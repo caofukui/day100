@@ -130,7 +130,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             childViewHolder.tvPrice=convertView.findViewById(R.id.child_price);
             convertView.setTag(childViewHolder);
         }else {
-            childViewHolder= (ChildViewHolder) convertView.getTag();
+            childViewHolder= (ChildViewHolder) convertView.getTag();//
         }
         List<CartBean.DataBean.ListBean> listBeans = this.list.get(groupPosition).getList();
         int selected = listBeans.get(childPosition).getSelected();
