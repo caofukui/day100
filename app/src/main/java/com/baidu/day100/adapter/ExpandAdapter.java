@@ -154,7 +154,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             @Override
             public void onDownSumLayout() {
                 //得到改变后的购买数量
-                String count = finalMyChildView.sumLayout.getCount();//
+                String count = finalMyChildView.sumLayout.getCount();
                 //转为int型
                 int i = Integer.parseInt(count);
                 //并重新给子条目数据的购买数量赋值
