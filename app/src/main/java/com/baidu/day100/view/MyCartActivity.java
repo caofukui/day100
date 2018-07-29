@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.day100.R;
 import com.baidu.day100.adapter.ExpandAdapter;
@@ -27,7 +28,7 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
     private CartPresenter cartPresenter;
     private ExpandAdapter expandAdapter;
     private List<CartBean.DataBean> list=new ArrayList<>();
-    private int counts;
+    private boolean ischecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +82,15 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void quanxuan() {
-        boolean checked = cart_check.isChecked();
-        for (int i = 0; i <list.size() ; i++) {
-            List<CartBean.DataBean.ListBean> lists = this.list.get(i).getList();
-            counts+=lists.size();
-            for (int j = 0; j < lists.size(); j++) {
-                lists.get(j).setChildChecked(checked);
-                expandAdapter.notifyDataSetChanged();
-            }
+        Toast.makeText(MyCartActivity.this,"点击了",Toast.LENGTH_SHORT).show();
+        if (ischecked) {
+            expandAdapter.setIsSelect(ischecked);
+            ischecked = false;
+            cart_check.setChecked(ischecked);
+        } else {
+            expandAdapter.setIsSelect(ischecked);
+            ischecked = true;
+            cart_check.setChecked(ischecked);
         }
     }
 
@@ -98,7 +100,13 @@ public class MyCartActivity extends AppCompatActivity implements View.OnClickLis
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                expandAdapter = new ExpandAdapter(MyCartActivity.this, cartBean.getData());
+                expandAdapter = new ExpandAdapter(MyCartActivity.this, cartBean.getData(), new ExpandAdapter.Callback() {
+                    @Override
+                    public void GoodCartsLitenster(int countyMoney, int countsNum) {
+                        cart_price.setText("小计" + countyMoney);
+                        cart_xuan.setText("已选（" + countsNum + ")");
+                    }
+                });
                 expandableListView.setAdapter(expandAdapter);
                 //设置子条目不点击展示
                 int count = expandableListView.getCount();
