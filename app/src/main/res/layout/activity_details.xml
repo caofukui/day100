@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/cart"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="#e3d8d8"
+            android:id="@+id/de_cart"
+            />
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/de_web"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="#ccc3c3"
+        >
+        <RadioGroup
+            android:layout_weight="3"
+            android:id="@+id/de_rg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/de_rb1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableTop="@drawable/red_24dp"
+                android:text="@string/gong" />
+
+            <RadioButton
+                android:id="@+id/de_rb2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableTop="@drawable/red_24dp"
+                android:text="@string/dianpu" />
+
+            <RadioButton
+                android:id="@+id/de_rb3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableTop="@drawable/red_24dp"
+                android:text="@string/guanzhu" />
+
+            <RadioButton
+                android:id="@+id/de_rb4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/red_24dp"
+                android:gravity="center"
+                android:text="@string/cart" />
+        </RadioGroup>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/addcart"
+            android:background="#f00"
+            android:id="@+id/de_add"
+            />
+    </LinearLayout>
+
+</FrameLayout>

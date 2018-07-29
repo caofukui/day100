@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">day100</string>
+    <string name="zuijin">最近搜索</string>
+    <string name="quxiao">取消</string>
+    <string name="apple">苹果</string>
+    <string name="chang">常用分类</string>
+    <string name="jichu">基础护肤</string>
+    <string name="mianmo">面膜</string>
+    <string name="xiangjiao">香蕉</string>
+    <string name="faxian">搜索发现</string>
+    <string name="cart">购物车</string>
+    <string name="guanzhu">关注</string>
+    <string name="dianpu">店铺</string>
+    <string name="gong">供应商</string>
+    <string name="zong">综合排序</string>
+    <string name="xiao">销量最高</string>
+    <string name="jiage">价格</string>
+    <string name="juli">距离最近</string>
+    <string name="addcart">加入购物车</string>
+    <string name="shouye">首页</string>
+    <string name="dian">店主招募</string>
+    <string name="geren">个人</string>
+    <string name="yixuan">已选(1)</string>
+    <string name="xiadan">下单</string>
+</resources>
