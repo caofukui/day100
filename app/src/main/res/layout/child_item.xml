@@ -44,6 +44,7 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignBottom="@id/child_img"
+            android:id="@+id/cart_childe_item_sumlayout"
             />
     </RelativeLayout>
 

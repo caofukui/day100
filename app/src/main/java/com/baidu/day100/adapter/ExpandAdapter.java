@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.baidu.day100.R;
 import com.baidu.day100.bean.CartBean;
+import com.baidu.day100.view.SumLayout;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -119,7 +120,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         ChildViewHolder childViewHolder=null;
         if (convertView==null){
             convertView=LayoutInflater.from(context).inflate(R.layout.child_item,parent,false);
@@ -128,9 +129,10 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             childViewHolder.imageView=convertView.findViewById(R.id.child_img);
             childViewHolder.tvTitile=convertView.findViewById(R.id.child_title);
             childViewHolder.tvPrice=convertView.findViewById(R.id.child_price);
+            childViewHolder.sumLayout = convertView.findViewById(R.id.cart_childe_item_sumlayout);
             convertView.setTag(childViewHolder);
         }else {
-            childViewHolder= (ChildViewHolder) convertView.getTag();//
+            childViewHolder= (ChildViewHolder) convertView.getTag();
         }
         List<CartBean.DataBean.ListBean> listBeans = this.list.get(groupPosition).getList();
         int selected = listBeans.get(childPosition).getSelected();
@@ -143,6 +145,38 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         childViewHolder.tvTitile.setText(listBeans.get(childPosition).getTitle());
         //因为是double类型所以要加“”，基本类中字段中有小数点都改成double类型
         childViewHolder.tvPrice.setText(listBeans.get(childPosition).getPrice()+"");
+
+        final ChildViewHolder finalMyChildView = childViewHolder;
+        /**
+         * 自定义加减框控件点击事件
+         */
+        childViewHolder.sumLayout.setOnDownSumLayoutListener(new SumLayout.OnDownSumLayouListener() {
+            @Override
+            public void onDownSumLayout() {
+                //得到改变后的购买数量
+                String count = finalMyChildView.sumLayout.getCount();//
+                //转为int型
+                int i = Integer.parseInt(count);
+                //并重新给子条目数据的购买数量赋值
+                list.get(groupPosition).getList().get(childPosition).setNum(i);
+                //刷新适配器，使显示器上的值改变
+                notifyDataSetChanged();
+
+            }
+        });
+
+        childViewHolder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int selected = list.get(groupPosition).getList().get(childPosition).getSelected();
+                if (selected == 0) {
+                    list.get(groupPosition).getList().get(childPosition).setSelected(1);
+                } else if (selected == 1) {
+                    list.get(groupPosition).getList().get(childPosition).setSelected(0);
+                }
+                notifyDataSetChanged();
+            }
+        });
         return convertView;
     }
 
@@ -165,6 +199,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         ImageView imageView;
         TextView tvTitile;
         TextView tvPrice;
+        SumLayout sumLayout;
     }
 
 
